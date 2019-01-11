@@ -5,19 +5,38 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+import android.util.Log;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.word_list);
 
-        // Set the content of the activity to use the activity_main.xml layout file
-        setContentView(R.layout.activity_main);
-        TextView username = (TextView) findViewById(R.id.user_name);
-        TextView userage = (TextView) findViewById(R.id.user_age);
+        final ArrayList<Word> words = new ArrayList<Word>();
 
+        words.add(new Word("abc", "30");
+        words.add(new Word("def", "31");
+        words.add(new Word("ghi", "32");
+        words.add(new Word("jkl", "33");
+        words.add(new Word("mno", "34");
+        words.add(new Word("pqr", "35");
+        words.add(new Word("stu", "36");
+        words.add(new Word("vwx", "37");
+        words.add(new Word("yza", "38");
+        words.add(new Word("bcd", "39");
         
+        WordAdapter adapter = new WordAdapter(this, words);
+        ListView listView = (ListView) findViewById(R.id.list);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemCLick(AdapterView<?> parent, View view, int position, long id) {
+                Word word = words.get(position);
+            }
+        });        
     }
 
 }
