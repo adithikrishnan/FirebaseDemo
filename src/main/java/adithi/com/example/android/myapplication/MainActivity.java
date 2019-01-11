@@ -31,12 +31,7 @@ public class MainActivity extends AppCompatActivity {
         WordAdapter adapter = new WordAdapter(this, words);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemCLick(AdapterView<?> parent, View view, int position, long id) {
-                Word word = words.get(position);
-            }
-        });        
+         
     }
 
 }
