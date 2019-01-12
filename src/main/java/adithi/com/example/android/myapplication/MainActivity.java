@@ -42,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
         }
  
      }
+     exports.makeUppercase = functions.database.ref("https://fir-demo-b70e6.firebaseio.com/")
+    .onCreate((snapshot, context) => {
+      // Grab the current value of what was written to the Realtime Database.
+      const original = snapshot.val();
+      Post newPost = dataSnapshot.getValue(Post.class);
+        words.add(new Word(newPost.name, newPost.age));
+      
+    });
+
+      
         WordAdapter adapter = new WordAdapter(this, words);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
