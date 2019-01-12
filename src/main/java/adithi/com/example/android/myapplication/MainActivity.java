@@ -9,25 +9,39 @@ import android.util.Log;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
-
+    
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
+        setContentView(R.layout.acitvity_main);
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("https://fir-demo-b70e6.firebaseio.com/");
+    
         final ArrayList<Word> words = new ArrayList<Word>();
+        for(int i=0; <10; i++) { 
+            myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                    String value = dataSnapshot.getValue(String.class);
+                    words.add(new Word(newPost.name, newPost.age);
+            }
+        @Override
+            public void onCancelled(DatabaseError error) {
+            // Failed to read value
+            Log.w(TAG, "Failed to read value.", error.toException());
+            }
+       });
 
-        words.add(new Word("abc", "30");
-        words.add(new Word("def", "31");
-        words.add(new Word("ghi", "32");
-        words.add(new Word("jkl", "33");
-        words.add(new Word("mno", "34");
-        words.add(new Word("pqr", "35");
-        words.add(new Word("stu", "36");
-        words.add(new Word("vwx", "37");
-        words.add(new Word("yza", "38");
-        words.add(new Word("bcd", "39");
-        
+ myRef.addChildEventListener(new ChildEventListener() {
+   @Override
+    public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+        Post newPost = dataSnapshot.getValue(Post.class);
+        words.add(new Word(newPost.name, newPost.age));
+        }
+ 
+     }
         WordAdapter adapter = new WordAdapter(this, words);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
